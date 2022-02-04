@@ -3,10 +3,10 @@ from googlesearch import search
 
  
 # create parser
-parser = argparse.ArgumentParser()
+parser = argparse.ArgumentParser(description="This program makes a domain restricted Google search and returns the first ten results")
  
 # add arguments to the parser
-parser.add_argument("site", help='the full web address of the website to be queried')
+parser.add_argument("site", nargs='?', type=str, default="www.mines.edu", help="Enter the web address of the website to be queried.")
  
 # parse the arguments
 args = parser.parse_args()
