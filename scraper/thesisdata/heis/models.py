@@ -19,10 +19,17 @@ class Institution(models.Model):
     public = models.BooleanField(default=True)
     non_profit = models.BooleanField(default=True, verbose_name="Non-profit")
     university = models.BooleanField(default=True, 
-                        help_text="An institution is considered a university if it offers both undergraduate and graduate programs.")
+                        help_text=("An institution is considered a university "
+                                   "if it offers several undergraduate and "
+                                   "graduate programs."))
     community_college = models.BooleanField(default=False, 
-                               help_text="True if the institution belongs to the Colorado Community College System (CCCS)")
-    votech = models.BooleanField(default=False, verbose_name="Technical or Vocational College or Institution")
+                                help_text=("True if the institution belongs "
+                                           "to the Colorado Community College "
+                                           "System (CCCS) or has Community "
+                                           "College in its name."))
+    votech = models.BooleanField(default=False, 
+                                 verbose_name=("Technical or Vocational "
+                                               "College or Institution"))
 
     def __str__(self) -> str:
         return self.name
