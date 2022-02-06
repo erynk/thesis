@@ -20,7 +20,6 @@ class Institution(models.Model):
     non_profit = models.BooleanField(default=True, verbose_name="Non-profit")
     university = models.BooleanField(default=True, 
                         help_text="An institution is considered a university if it offers both undergraduate and graduate programs.")
-    two_year = models.BooleanField(default=False, verbose_name="Two year")
     community_college = models.BooleanField(default=False, 
                                help_text="True if the institution belongs to the Colorado Community College System (CCCS)")
     votech = models.BooleanField(default=False, verbose_name="Technical or Vocational College or Institution")
