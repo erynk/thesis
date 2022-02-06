@@ -11,10 +11,22 @@ class Region(models.Model):
     def __str__(self) -> str:
         return self.region_name
 
+class City(models.Model):
+    """
+    Model representing the city of the institution.
+    In cases where the institution has more than one campus, 
+    this entry should default to the city of the institution's
+    mailing address.
+    """
+    city = models.CharField(max_length=60)
+
+    def __str__(self) -> str:
+        return self.city
+
 class Institution(models.Model):
     """Model representing an institution of higher education."""
     name = models.CharField(max_length=100)
-    city = models.CharField(max_length=60)
+    city = models.ForeignKey(City, on_delete=models.CASCADE)
     region = models.ForeignKey(Region, on_delete=models.SET_NULL, null=True)
     public = models.BooleanField(default=True)
     non_profit = models.BooleanField(default=True, verbose_name="Non-profit")
