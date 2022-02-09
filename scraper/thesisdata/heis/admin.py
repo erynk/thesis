@@ -9,6 +9,9 @@ class PageAdmin(admin.ModelAdmin):
         'web_address', 
         'home_page')
 
+class PageInline(admin.TabularInline):
+    model = Page
+
 class InstitutionAdmin(admin.ModelAdmin):
     list_display = (
         'name', 
@@ -19,6 +22,7 @@ class InstitutionAdmin(admin.ModelAdmin):
         'university', 
         'community_college', 
         'votech')
+    inlines = [PageInline, ]
 
     def get_region(self, obj):
         return obj.city.region
