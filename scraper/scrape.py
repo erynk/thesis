@@ -1,20 +1,14 @@
-import argparse
 from googlesearch import search
 import csv
- 
-# create parser
-parser = argparse.ArgumentParser(description="This program makes a domain restricted Google search and returns the first ten results")
- 
-# add arguments to the parser
-parser.add_argument("site", nargs='?', type=str, default="www.mines.edu", help="Enter the web address of the website to be queried.")
- 
-# parse the arguments
-args = parser.parse_args()
- 
-# get the arguments value and join it to the domain specific search string
-query = "site: " + args.site
+import time
 
-results = []
+sites = []
+
+with open('sites.txt') as file:
+    for line in file:
+        sites.append(line.rstrip())
+
+
 
 # to search
 
@@ -30,11 +24,15 @@ stop: The last result to retrieve. Use None to keep searching forever.
 pause: Lapse to wait between HTTP requests. Lapse too short may cause Google to block your IP. Keeping significant lapses will make your program slow but it’s a safe and better option.
 Return: Generator (iterator) that yields found URLs. If the stop parameter is None the iterator will loop forever.
 '''
- 
-for j in search(query, tld="com", num=10, stop=10, pause=2):
-    results.append(j)
-    print(j)
 
-with open('results.csv', 'a') as f:
-    writer = csv.writer(f)
-    writer.writerow(results)
+for site in sites:
+    query = "site:" + site
+    results = []
+    for j in search(query, tld="com", num=10, stop=10, pause=2):
+        results.append(j)
+        print(j)
+    with open('results.csv', 'a') as f:
+        writer = csv.writer(f)
+        writer.writerow(results)
+    time.sleep(3)
+           
