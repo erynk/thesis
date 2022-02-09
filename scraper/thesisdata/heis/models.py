@@ -53,7 +53,7 @@ class Institution(models.Model):
 
 class Page(models.Model):
     """Model representing a web page."""
-    title = models.CharField(max_length=60)
+    title = models.CharField(max_length=60, null=True, blank=True)
     web_address = models.URLField(unique=True)
     home_page = models.BooleanField(default=False)
     institution = models.ForeignKey(Institution,  on_delete=models.CASCADE)
