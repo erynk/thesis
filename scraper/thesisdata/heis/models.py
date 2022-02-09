@@ -1,5 +1,3 @@
-from math import degrees
-from turtle import title
 from django.db import models
 
 # Create your models here.
@@ -18,16 +16,23 @@ class City(models.Model):
     this entry should default to the city of the institution's
     mailing address.
     """
+    class Meta:
+        verbose_name_plural = "Cities"
+        ordering = ("city",)
+
     city = models.CharField(max_length=60)
+    region = models.ForeignKey(Region, on_delete=models.SET_NULL, null=True, verbose_name="region")
 
     def __str__(self) -> str:
         return self.city
 
 class Institution(models.Model):
     """Model representing an institution of higher education."""
+    class Meta:
+        ordering = ("name", "city")
+
     name = models.CharField(max_length=100)
-    city = models.ForeignKey(City, on_delete=models.CASCADE)
-    region = models.ForeignKey(Region, on_delete=models.SET_NULL, null=True)
+    city = models.ForeignKey(City, on_delete=models.SET_NULL, null=True)
     public = models.BooleanField(default=True)
     non_profit = models.BooleanField(default=True, verbose_name="Non-profit")
     university = models.BooleanField(default=True, 
