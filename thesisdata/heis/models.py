@@ -54,6 +54,17 @@ class Institution(models.Model):
                                               "to Computer Science, such as Computer "
                                               "Engineering, Computer Information "
                                               "Systems, Information Technology, et cetera"))
+    dei_statement = models.BooleanField(default=False,
+                                        verbose_name="Diversity and Inclusion Statement",
+                                        help_text=("True if the institution "
+                                                   "includes accessibility in its "
+                                                   "Diversity, Equity, and Inclusion "
+                                                   "(or similar) Statement"))
+    access_statement = models.BooleanField(default=False,
+                                           verbose_name="Accessibility Statement",
+                                           help_text=("True if the institution "
+                                                      "has a published Accessibility "
+                                                      "Statement"))
 
     def __str__(self) -> str:
         return self.name
