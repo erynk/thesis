@@ -5,9 +5,11 @@ from .models import ReviewPage, Tool, Failure, ReviewAutomated
 
 class FailureInline(admin.TabularInline):
     model = Failure
+    extra = 0
 
 class ReviewPageInline(admin.TabularInline):
     model = ReviewPage
+    extra = 0
 
 class ReviewPageAdmin(admin.ModelAdmin):
     inlines = [FailureInline, ]
