@@ -47,6 +47,13 @@ class Institution(models.Model):
     votech = models.BooleanField(default=False, 
                                  verbose_name=("Technical or Vocational "
                                                "College or Institution"))
+    cs_major = models.BooleanField(default=False, 
+                                   verbose_name="Computer Science related major",
+                                   help_text=("True if the institution has a Computer "
+                                              "Science major or one related or adjacent "
+                                              "to Computer Science, such as Computer "
+                                              "Engineering, Computer Information "
+                                              "Systems, Information Technology, et cetera"))
 
     def __str__(self) -> str:
         return self.name
