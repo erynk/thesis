@@ -26,6 +26,7 @@ class InstitutionAdmin(admin.ModelAdmin):
 
     def get_region(self, obj):
         return obj.city.region
+        
     get_region.admin_order_field  = 'region'  #Allows column order sorting
     get_region.short_description = 'Region'  #Renames column head
 

@@ -11,10 +11,13 @@ args = parser.parse_args()
 path = args.directory
 
 dir_list = os.listdir(path)
+
+print(dir_list)
  
 for item in dir_list:
     if item.endswith('html'):
         if item != "index.html":
+            item = path + "/" + item
             soup = BeautifulSoup(open(item, encoding="utf8"), "html.parser")
             page_name = soup.find('h1').find('a').get('href')
             
